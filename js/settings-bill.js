@@ -23,10 +23,18 @@ var callTotalSet= 0;
 var smsTotalSet = 0;
 //add an event listener for when the 'Update settings' button is pressed
 updateBtn.addEventListener('click', function(){
-    callCost = parseFloat(callCostSetting.value);
-    smsCost = parseFloat(smsCostSetting.value);
-    warningLevel = parseFloat(warningLevelSetting.value);
-    dangerLevel = parseFloat(criticalLevelSetting.value);
+    if(parseFloat(callCostSetting.value)>0){
+        callCost = parseFloat(callCostSetting.value);
+    }
+    if(parseFloat(smsCostSetting.value)>0){
+        smsCost = parseFloat(smsCostSetting.value);
+    }
+    if(parseFloat(warningLevelSetting.value)>0){
+        warningLevel = parseFloat(warningLevelSetting.value);
+    }
+    if(parseFloat(criticalLevelSetting.value)>0){
+        dangerLevel = parseFloat(criticalLevelSetting.value);
+    }
 })
 
 //add an event listener for when the add button is pressed
