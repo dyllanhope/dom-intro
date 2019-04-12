@@ -25,10 +25,10 @@ for (var i=0;i<billItems.length;i++){
 var roundedBillTotal = billTotal.toFixed(2);
     billTotalElement.innerHTML = roundedBillTotal;
 if (roundedBillTotal > 20){
-    billTotalElement.classList.toggle("warning");
+    billTotalElement.classList.add("warning");
 }
 if (roundedBillTotal > 30){
-    billTotalElement.classList.toggle("danger");
+    billTotalElement.classList.add("danger");
 }
 }
 //link the function to a click event on the calculate button
