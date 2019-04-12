@@ -25,5 +25,11 @@ addBtn.addEventListener('click', function(){
     smsTotalElem.innerHTML = smsTotal.toFixed(2);
     var totalCost = callsTotal + smsTotal;
     totalCostElem.innerHTML = totalCost.toFixed(2);
+
+    if(totalCost >= 50){
+        totalCostElem.classList.add("danger");
+    } else if(totalCost >= 30){
+        totalCostElem.classList.add("warning");
+    }
 });
 
