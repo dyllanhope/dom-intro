@@ -15,43 +15,45 @@ var smsCost = 0.75;
 var warningLevel = 30;
 var dangerLevel = 50;
 // create a variables that will keep track of all three totals.
-var callsTotalElem = document.querySelector(".callTotalSettings");
-var smsTotalElem = document.querySelector(".smsTotalSettings");
-var totalCostElem = document.querySelector(".totalSettings");
+var callsTotalElemSet = document.querySelector(".callTotalSettings");
+var smsTotalElemSet = document.querySelector(".smsTotalSettings");
+var totalCostElemSet = document.querySelector(".totalSettings");
 
-var callTotal= 0;
-var smsTotal = 0;
+var callTotalSet= 0;
+var smsTotalSet = 0;
 //add an event listener for when the 'Update settings' button is pressed
 updateBtn.addEventListener('click', function(){
-    callCost = callCostSetting.value;
-    smsCost = smsCostSetting.value;
-    warningLevel = warningLevelSetting.value;
-    dangerLevel = criticalLevelSetting.value;
+    callCost = parseFloat(callCostSetting.value);
+    smsCost = parseFloat(smsCostSetting.value);
+    warningLevel = parseFloat(warningLevelSetting.value);
+    dangerLevel = parseFloat(criticalLevelSetting.value);
 })
+
 //add an event listener for when the add button is pressed
 addBtnSettings.addEventListener('click', function(){
 
-    var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
-    if (checkedRadioBtn){
-        var billItemType = checkedRadioBtn.value
+    var checkedRadioBtnSet = document.querySelector("input[name='billItemTypeWithSettings']:checked");
+    if (checkedRadioBtnSet){
+        var billItemTypeSet = checkedRadioBtnSet.value
     }
-
-    if (billItemType === "call"){
-        callTotal += callCost;
+    if (billItemTypeSet === "call"){
+        callTotalSet += callCost;
     }
-    else if (billItemType === "sms"){
-        smsTotal += smsCost;
+    else if (billItemTypeSet === "sms"){
+        smsTotalSet += smsCost;
     }
+    console.log(callTotalSet)
+    console.log(callCost)
 
-    callsTotalElem.innerHTML = callsTotal.toFixed(2);
-    smsTotalElem.innerHTML = smsTotal.toFixed(2);
-    var totalCost = callsTotal + smsTotal;
-    totalCostElem.innerHTML = totalCost.toFixed(2);
+    callsTotalElemSet.innerHTML = callTotalSet.toFixed(2);
+    smsTotalElemSet.innerHTML = smsTotalSet.toFixed(2);
+    var totalCostSet = callTotalSet + smsTotalSet;
+    totalCostElemSet.innerHTML = totalCostSet.toFixed(2);
 
-    if(totalCost >= dangerLevel){
-        totalCostElem.classList.add("danger");
-    } else if(totalCost >= warningLevel){
-        totalCostElem.classList.add("warning");
+    if(totalCostSet >= dangerLevel){
+        totalCostElemSet.classList.add("danger");
+    } else if(totalCostSet >= warningLevel){
+        totalCostElemSet.classList.add("warning");
     }
 })
 //in the event listener get the value from the billItemTypeRadio radio buttons
