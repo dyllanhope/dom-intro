@@ -80,7 +80,7 @@ addBtnSettings.addEventListener('click', function(){
             totalCostElemSet.classList.remove("danger");
         }
     } else {
-        alert("You have exceeded the Critical Level set, please update settings accordingly")
+        alert("You have exceeded the Critical level set, please update settings accordingly")
     }  
 })
 //in the event listener get the value from the billItemTypeRadio radio buttons
