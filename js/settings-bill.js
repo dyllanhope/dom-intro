@@ -21,6 +21,7 @@ var totalCostElemSet = document.querySelector(".totalSettings");
 
 var callTotalSet= 0;
 var smsTotalSet = 0;
+var totalCostSet = 0;
 //add an event listener for when the 'Update settings' button is pressed
 updateBtn.addEventListener('click', function(){
     if(parseFloat(callCostSetting.value)>0){
@@ -35,6 +36,17 @@ updateBtn.addEventListener('click', function(){
     if(parseFloat(criticalLevelSetting.value)>0){
         dangerLevel = parseFloat(criticalLevelSetting.value);
     }
+    if(totalCostSet < warningLevel){
+        totalCostElemSet.classList.remove("warning");
+        totalCostElemSet.classList.remove("danger");
+    }
+    if(totalCostSet >= dangerLevel){
+        totalCostElemSet.classList.add("danger");
+    }
+    if((totalCostSet >= warningLevel) &&(totalCostSet < dangerLevel)){
+        totalCostElemSet.classList.add("warning");
+        totalCostElemSet.classList.remove("danger");
+    }
 })
 
 //add an event listener for when the add button is pressed
@@ -44,25 +56,32 @@ addBtnSettings.addEventListener('click', function(){
     if (checkedRadioBtnSet){
         var billItemTypeSet = checkedRadioBtnSet.value
     }
-    if (billItemTypeSet === "call"){
-        callTotalSet += callCost;
-    }
-    else if (billItemTypeSet === "sms"){
-        smsTotalSet += smsCost;
-    }
-    console.log(callTotalSet)
-    console.log(callCost)
+    if(totalCostSet < dangerLevel){
+        if (billItemTypeSet === "call"){
+            callTotalSet += callCost;
+        }
+        else if (billItemTypeSet === "sms"){
+            smsTotalSet += smsCost;
+        }
+        callsTotalElemSet.innerHTML = callTotalSet.toFixed(2);
+        smsTotalElemSet.innerHTML = smsTotalSet.toFixed(2);
+        totalCostSet = callTotalSet + smsTotalSet;
+        totalCostElemSet.innerHTML = totalCostSet.toFixed(2);
 
-    callsTotalElemSet.innerHTML = callTotalSet.toFixed(2);
-    smsTotalElemSet.innerHTML = smsTotalSet.toFixed(2);
-    var totalCostSet = callTotalSet + smsTotalSet;
-    totalCostElemSet.innerHTML = totalCostSet.toFixed(2);
-
-    if(totalCostSet >= dangerLevel){
-        totalCostElemSet.classList.add("danger");
-    } else if(totalCostSet >= warningLevel){
-        totalCostElemSet.classList.add("warning");
-    }
+        if(totalCostSet < warningLevel){
+            totalCostElemSet.classList.remove("warning");
+            totalCostElemSet.classList.remove("danger");
+        }
+        if(totalCostSet >= dangerLevel){
+            totalCostElemSet.classList.add("danger");
+        }
+        if((totalCostSet >= warningLevel) &&(totalCostSet < dangerLevel)){
+            totalCostElemSet.classList.add("warning");
+            totalCostElemSet.classList.remove("danger");
+        }
+    } else {
+        alert("You have reached the Critical Level set, please update settings accordingly")
+    }  
 })
 //in the event listener get the value from the billItemTypeRadio radio buttons
 // * add the appropriate value to the call / sms total

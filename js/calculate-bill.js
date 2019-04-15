@@ -24,8 +24,13 @@ for (var i=0;i<billItems.length;i++){
 //  * once done looping over all the entries - display the total onto the screen in the billTotal element
 var roundedBillTotal = billTotal.toFixed(2);
     billTotalElement.innerHTML = roundedBillTotal;
-if (roundedBillTotal >= 20){
+if (roundedBillTotal < 20){
+    billTotalElement.classList.remove("warning");
+    billTotalElement.classList.remove("danger");
+}
+if ((roundedBillTotal >= 20)&& (roundedBillTotal< 30)){
     billTotalElement.classList.add("warning");
+    billTotalElement.classList.remove("danger");
 }
 if (roundedBillTotal >= 30){
     billTotalElement.classList.add("danger");
