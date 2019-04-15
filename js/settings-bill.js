@@ -10,10 +10,10 @@ var addBtnSettings = document.querySelector(".settingsBillAddButton");
 //get a reference to the 'Update settings' button
 var updateBtn = document.querySelector(".updateSettings");
 // create a variables that will keep track of all the settings
-var callCost = 2.75;
-var smsCost = 0.75;
-var warningLevel = 30;
-var dangerLevel = 50;
+var callCost = 0.00;
+var smsCost = 0.00;
+var warningLevel = 0.00;
+var dangerLevel = 0.00;
 // create a variables that will keep track of all three totals.
 var callsTotalElemSet = document.querySelector(".callTotalSettings");
 var smsTotalElemSet = document.querySelector(".smsTotalSettings");
