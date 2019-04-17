@@ -17,13 +17,13 @@ function SettingBill(){
     function grandTotal(){
         TotAmount = smsTotal+callTotal;
         TotAmount = parseFloat(TotAmount);
-        return "R"+TotAmount.toFixed(2);
+        return TotAmount.toFixed(2);
     }
     function displayCall(){
-        return "R"+ callTotal.toFixed(2);
+        return callTotal.toFixed(2);
     }
     function displaySms(){
-        return "R"+ smsTotal.toFixed(2);
+        return smsTotal.toFixed(2);
     }
     function updateSettings(callUp,smsUp,warnUp,critUp){
         callCost = parseFloat(callUp.trim());
@@ -33,11 +33,11 @@ function SettingBill(){
     }
     function determineLevel(){
         if((TotAmount >= warnLevel)&&(TotAmount < critLevel)){
-            return "warning"
+            return "warning";
         } else if(TotAmount >= critLevel){
-            return "danger"
+            return "danger";
         } else {
-            return "safe"
+            return "safe";
         }
     }
     return{
