@@ -7,17 +7,21 @@ function SettingBill(){
     var critLevel =0.00;
     var TotAmount = 0.00;
     function addToBill(billString){
-        if (billString.trim() === "call"){
-            callTotal += callCost;
-        }
-        else if (billString.trim() === "sms"){
-            smsTotal += smsCost;
+        if(TotAmount<=critLevel){
+            if (billString.trim() === "call"){
+                callTotal += callCost;
+            }
+            else if (billString.trim() === "sms"){
+                smsTotal += smsCost;
+            }
         }
     }
     function grandTotal(){
-        TotAmount = smsTotal+callTotal;
-        TotAmount = parseFloat(TotAmount);
-        return TotAmount.toFixed(2);
+        if(TotAmount<=critLevel){
+            TotAmount = smsTotal+callTotal;
+            TotAmount = parseFloat(TotAmount);
+            return TotAmount.toFixed(2);
+        }
     }
     function displayCall(){
         return callTotal.toFixed(2);

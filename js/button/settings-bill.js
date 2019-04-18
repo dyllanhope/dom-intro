@@ -35,7 +35,6 @@ addBtnSettings.addEventListener('click', function(){
     if (checkedRadioBtnSet){
         var billItemTypeSet = checkedRadioBtnSet.value
     }
-    if(settingsInstance.level()>"danger"){
         settingsInstance.bill(billItemTypeSet);
         callsTotalElemSet.innerHTML = settingsInstance.callTotal();
         smsTotalElemSet.innerHTML = settingsInstance.smsTotal();
@@ -51,8 +50,5 @@ addBtnSettings.addEventListener('click', function(){
         if(settingsInstance.level()==="warning"){
             totalCostElemSet.classList.add("warning");
             totalCostElemSet.classList.remove("danger");
-        }
-    } else {
-        alert("You have exceeded the Critical level set, please update settings accordingly")
-    }  
+        } 
 })
