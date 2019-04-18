@@ -52,6 +52,8 @@ describe('The TextBill function', function(){
        textBillOne.bill("call");
        textBillOne.bill("call");
        textBillOne.bill("call");
+       console.log(textBillOne.total())
+         console.log(textBillOne.level())
        assert.equal(textBillOne.level(),"danger");
    });
     it('Should return all totals as "R0.00" with no input', function(){
@@ -130,7 +132,7 @@ describe('The TextBill function', function(){
          //second instance
         assert.equal(textBillTwo.sms(), "1.50" );
       });
-      it('should return the level of the first instance as "safe" and the second instance as "safe"', function(){
+      it('should return the level of the first instance as "warning" and the second instance as "safe"', function(){
          var textBillThree = TextBill();
         var textBillTwo = TextBill();
         textBillThree.bill("call");
@@ -149,6 +151,8 @@ describe('The TextBill function', function(){
         textBillThree.bill("call");
         textBillThree.bill("call");
          //first instance
+         console.log(textBillThree.total())
+         console.log(textBillThree.level())
         assert.equal(textBillThree.level(),"warning");
         //second instance
         assert.equal(textBillTwo.level(),"safe");
