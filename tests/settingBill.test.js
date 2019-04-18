@@ -82,7 +82,7 @@ describe('The SettingBill function', function(){
         //second instance
         assert.equal(settingBillTwo.total(), "10.00" );
      });
-     it('Should return a call total of "4.00" for the first instance and "6.00" for the second', function(){
+     it('Should return a call total of "4.00" at R2 per for the first instance and "6.00" at R3 per for the second', function(){
       var settingBillOne = SettingBill();
       var settingBillTwo = SettingBill();
       settingBillOne.update("2","1","10","20");
@@ -99,7 +99,7 @@ describe('The SettingBill function', function(){
         //second instance
         assert.equal(settingBillTwo.callTotal(), "6.00" );
      });
-     it('Should return a total of "1.00" for the first instance and "4.00" for the second', function(){
+     it('Should return a total of "1.00" at R1 per for the first instance and "4.00" at R2 per for the second', function(){
       var settingBillOne = SettingBill();
       var settingBillTwo = SettingBill();
       settingBillOne.update("2","1","10","20");
@@ -134,6 +134,7 @@ describe('The SettingBill function', function(){
         console.log(settingBillTwo.total());
         assert.equal(settingBillTwo.level(),"warning");
      });
+
      it('Should return the total "16.00" with 10x calls as it has a critical level of 15, meaning the total cannot increase once critical level exceeded ', function(){
       var settingBillOne = SettingBill();
       settingBillOne.update("2","1","10","15");
@@ -148,8 +149,12 @@ describe('The SettingBill function', function(){
       settingBillOne.bill("call");
       settingBillOne.bill("call");
       console.log("----------------------------------")
-      console.log(settingBillOne.callTotal())
+
       console.log(settingBillOne.smsTotal())
+      console.log(settingBillOne.callTotal())
+      console.log(settingBillOne.total())
+      console.log(settingBillOne.level())
       assert.equal(settingBillOne.total(),"16.00")
+      
      });
 });

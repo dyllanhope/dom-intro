@@ -5,9 +5,9 @@ function SettingBill(){
     var smsCost =0.00;
     var warnLevel =0.00;
     var critLevel =0.00;
-    var TotAmount = 0.00;
+
     function addToBill(billString){
-        if(TotAmount<=critLevel){
+        if(grandTotal()<critLevel){
             if (billString.trim() === "call"){
                 callTotal += callCost;
             }
@@ -16,13 +16,13 @@ function SettingBill(){
             }
         }
     }
+
     function grandTotal(){
-        if(TotAmount<=critLevel){
-            TotAmount = smsTotal+callTotal;
+            var TotAmount = smsTotal+callTotal;
             TotAmount = parseFloat(TotAmount);
             return TotAmount.toFixed(2);
-        }
     }
+
     function displayCall(){
         return callTotal.toFixed(2);
     }
@@ -36,9 +36,9 @@ function SettingBill(){
         critLevel = parseFloat(critUp.trim());
     }
     function determineLevel(){
-        if((TotAmount >= warnLevel)&&(TotAmount < critLevel)){
+        if((grandTotal() >= warnLevel)&&(grandTotal() < critLevel)){
             return "warning";
-        } else if(TotAmount >= critLevel){
+        } else if(grandTotal() >= critLevel){
             return "danger";
         } else {
             return "safe";
