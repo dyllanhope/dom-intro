@@ -30,10 +30,10 @@ function SettingBill(){
         return smsTotal.toFixed(2);
     }
     function updateSettings(callUp,smsUp,warnUp,critUp){
-        callCost = parseFloat(callUp.trim());
-        smsCost = parseFloat(smsUp.trim());
-        warnLevel = parseFloat(warnUp.trim());
-        critLevel = parseFloat(critUp.trim());
+        callCost = Number(callUp.trim());
+        smsCost = Number(smsUp.trim());
+        warnLevel = Number(warnUp.trim());
+        critLevel = Number(critUp.trim());
     }
     function determineLevel(){
         if((grandTotal() >= warnLevel)&&(grandTotal() < critLevel)){
