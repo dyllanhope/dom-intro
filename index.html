@@ -106,15 +106,21 @@
                 <script type="text/x-template" class="userTemplate">
                 <tr>
                   <td>Calls total</td>
-                  <td>R<span>{{callData}}</span></td>
+                  <td>{{callData}}</td>
                 </tr>
                 <tr>
                   <td>SMS total</td>
-                  <td>R<span>{{smsData}}</span></td>
+                  <td>{{smsData}}</td>
                 </tr>
                 <tr>
                   <td>Total</td>
-                  <td class="totalOne">R<span>{{totalData}}</span></td>
+                    {{#if (isWarningText)}}
+                    <td class="totalTwo warning">{{totalData}}</td>
+                    {{else if (isDangerText)}}
+                    <td class="totalTwo danger">{{totalData}}</td>
+                    {{else}}
+                    <td>{{totalData}}</td>
+                    {{/if}}
                 </tr>
               </script>
               </tbody>
@@ -167,15 +173,21 @@
                 <script type="text/x-template" class="userTemplateRadio">
                   <tr>
                     <td>Calls total</td>
-                    <td>R<span>{{callData}}</span></td>
+                    <td>{{callData}}</td>
                   </tr>
                   <tr>
                     <td>SMS total</td>
-                    <td>R<span>{{smsData}}</span></td>
+                    <td>{{smsData}}</td>
                   </tr>
                   <tr>
                     <td>Total</td>
-                    <td class="totalTwo">R<span>{{totalData}}</span></td>
+                    {{#if (isWarning)}}
+                    <td class="totalTwo warning">{{totalData}}</td>
+                    {{else if (isDanger)}}
+                    <td class="totalTwo danger">{{totalData}}</td>
+                    {{else}}
+                    <td>{{totalData}}</td>
+                    {{/if}}
                   </tr>
                 </script>
               </tbody>

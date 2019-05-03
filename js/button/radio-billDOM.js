@@ -1,19 +1,19 @@
 var billItemTypeRadio = document.querySelector(".billItemTypeRadio");
-var addBtn =  document.querySelector(".radioBillAddBtn");
+var addBtn = document.querySelector(".radioBillAddBtn");
 var templateSourceRadio = document.querySelector(".userTemplateRadio").innerHTML;
 var radioInstance = RadioBtn();
 
-addBtn.addEventListener('click', function(){
+addBtn.addEventListener('click', function () {
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
-    if (checkedRadioBtn){
+    if (checkedRadioBtn) {
         var billItemType = checkedRadioBtn.value
     }
     radioInstance.bill(billItemType);
 
     var userDataRadio = {
-        callData : radioInstance.call(),
-        smsData : radioInstance.sms(),
-        totalData : radioInstance.total()
+        callData: "R" + radioInstance.call(),
+        smsData: "R" + radioInstance.sms(),
+        totalData: "R" + radioInstance.total()
     };
 
     var userTemplateRadio = Handlebars.compile(templateSourceRadio);
@@ -22,12 +22,21 @@ addBtn.addEventListener('click', function(){
 
     var userDataHTMLRadio = userTemplateRadio(userDataRadio);
     userDataElemRadio.innerHTML = userDataHTMLRadio;
-
-    var totalTwoDisplay = document.querySelector(".totalTwo");
-    if(radioInstance.level()==="danger"){
-        totalTwoDisplay.classList.add("danger");
-    } else if(radioInstance.level()==="warning"){
-        totalTwoDisplay.classList.add("warning");
-    }
 })
+
+Handlebars.registerHelper('isDanger', function () {
+    var testingLevel = radioInstance.level();
+
+    if (testingLevel === "danger") {
+        return true;
+    } 
+});
+Handlebars.registerHelper('isWarning', function () {
+    var testingLevel = radioInstance.level();
+
+    if (testingLevel === "warning") {
+        return true;
+    } 
+});
+
 

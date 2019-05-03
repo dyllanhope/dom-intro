@@ -6,9 +6,9 @@ var textInstance = TextBill();
 addBtnTex.addEventListener('click', function () {
     textInstance.bill(billTypeText.value);
     var userData = {
-        callData: textInstance.call(),
-        smsData: textInstance.sms(),
-        totalData: textInstance.total()
+        callData: "R" + textInstance.call(),
+        smsData: "R" + textInstance.sms(),
+        totalData: "R" + textInstance.total()
     };
     var userTemplate = Handlebars.compile(templateSource);
 
@@ -17,11 +17,18 @@ addBtnTex.addEventListener('click', function () {
     var userDataHTML = userTemplate(userData);
     userDataElem.innerHTML = userDataHTML;
 
-    var totalOneDisplay = document.querySelector(".totalOne");
-    if (textInstance.level() === "danger") {
-        totalOneDisplay.classList.add("danger");
-    } else if (textInstance.level() === "warning") {
-        totalOneDisplay.classList.add("warning");
-    }
 });
+Handlebars.registerHelper('isDangerText', function () {
+    var testingLevel = textInstance.level();
 
+    if (testingLevel === "danger") {
+        return true;
+    } 
+});
+Handlebars.registerHelper('isWarningText', function () {
+    var testingLevel = textInstance.level();
+
+    if (testingLevel === "warning") {
+        return true;
+    } 
+});
