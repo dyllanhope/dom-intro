@@ -10,7 +10,7 @@ function TextBill(){
             smsTotal += 0.75;
         }
     }
-    function displayTotal(){
+    function displayTotal(){ 
         billTotal = callTotal + smsTotal;
         return billTotal.toFixed(2);
     }
