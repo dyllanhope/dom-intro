@@ -102,7 +102,7 @@
           <div class="six columns">
             <h5>Totals</h5>
             <table>
-              <tbody class="userData">
+              <tbody class="userDataTextBill">
                 <script type="text/x-template" class="userTemplate">
                 <tr>
                   <td>Calls total</td>
@@ -163,18 +163,22 @@
           <div class="six columns">
             <h5>Totals</h5>
             <table>
-              <tr>
-                <td>Call total</td>
-                <td>R<span class="callTotalTwo">0.00</span></td>
-              </tr>
-              <tr>
-                <td>SMS total</td>
-                <td>R<span class="smsTotalTwo">0.00</span></td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td class="orange">R<span class="totalTwo">0.00</span></td>
-              </tr>
+              <tbody class="userDataRadioBill">
+                <script type="text/x-template" class="userTemplateRadio">
+                  <tr>
+                    <td>Calls total</td>
+                    <td>R<span>{{callData}}</span></td>
+                  </tr>
+                  <tr>
+                    <td>SMS total</td>
+                    <td>R<span>{{smsData}}</span></td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td class="totalTwo">R<span>{{totalData}}</span></td>
+                  </tr>
+                </script>
+              </tbody>
             </table>
           </div>
         </div>

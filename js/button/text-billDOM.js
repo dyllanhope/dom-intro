@@ -5,16 +5,14 @@ var textInstance = TextBill();
 
 addBtnTex.addEventListener('click', function () {
     textInstance.bill(billTypeText.value);
-
     var userData = {
         callData: textInstance.call(),
         smsData: textInstance.sms(),
         totalData: textInstance.total()
     };
-
     var userTemplate = Handlebars.compile(templateSource);
-    
-    var userDataElem = document.querySelector(".userData");
+
+    var userDataElem = document.querySelector(".userDataTextBill");
 
     var userDataHTML = userTemplate(userData);
     userDataElem.innerHTML = userDataHTML;

@@ -1,8 +1,6 @@
 var billItemTypeRadio = document.querySelector(".billItemTypeRadio");
 var addBtn =  document.querySelector(".radioBillAddBtn");
-var callsTotalElem = document.querySelector(".callTotalTwo");
-var smsTotalElem = document.querySelector(".smsTotalTwo");
-var totalCostElem = document.querySelector(".totalTwo");
+var templateSourceRadio = document.querySelector(".userTemplateRadio").innerHTML;
 var radioInstance = RadioBtn();
 
 addBtn.addEventListener('click', function(){
@@ -11,14 +9,25 @@ addBtn.addEventListener('click', function(){
         var billItemType = checkedRadioBtn.value
     }
     radioInstance.bill(billItemType);
-    callsTotalElem.innerHTML = radioInstance.call();
-    smsTotalElem.innerHTML = radioInstance.sms();
-    totalCostElem.innerHTML = radioInstance.total();
 
+    var userDataRadio = {
+        callData : radioInstance.call(),
+        smsData : radioInstance.sms(),
+        totalData : radioInstance.total()
+    };
+
+    var userTemplateRadio = Handlebars.compile(templateSourceRadio);
+
+    var userDataElemRadio = document.querySelector(".userDataRadioBill");
+
+    var userDataHTMLRadio = userTemplateRadio(userDataRadio);
+    userDataElemRadio.innerHTML = userDataHTMLRadio;
+
+    var totalTwoDisplay = document.querySelector(".totalTwo");
     if(radioInstance.level()==="danger"){
-        totalCostElem.classList.add("danger");
+        totalTwoDisplay.classList.add("danger");
     } else if(radioInstance.level()==="warning"){
-        totalCostElem.classList.add("warning");
+        totalTwoDisplay.classList.add("warning");
     }
 })
 
